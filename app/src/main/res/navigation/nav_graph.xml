@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/planetsListFragment">
+
+    <fragment
+        android:id="@+id/planetsListFragment"
+        android:name="com.example.starwarsplanets.ui.PlanetsListFragment"
+        android:label="fragment_planets_list"
+        tools:layout="@layout/fragment_planets_list" >
+        <action
+            android:id="@+id/action_planetsListFragment_to_planetsDetailFragment"
+            app:destination="@id/planetsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetsDetailFragment"
+        android:name="com.example.starwarsplanets.ui.PlanetsDetailFragment"
+        android:label="fragment_planets_detail"
+        tools:layout="@layout/fragment_planets_detail" />
+</navigation>
