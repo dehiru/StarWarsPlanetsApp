@@ -20,7 +20,6 @@ class PlanetsListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentPlanetsListBinding.inflate(inflater)
-        viewModel.getPlanetsList()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.recyclerView.adapter = PlanetsListAdapter(PlanetsListener { planet ->
@@ -30,4 +29,5 @@ class PlanetsListFragment : Fragment() {
         })
         return binding.root
     }
+
 }

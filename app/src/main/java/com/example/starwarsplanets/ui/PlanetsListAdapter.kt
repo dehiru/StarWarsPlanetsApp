@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.starwarsplanets.databinding.ListViewItemBinding
-import com.example.starwarsplanets.network.Planet
+import com.example.starwarsplanets.domain.Planet
 
 class PlanetsListAdapter(val clickListener: PlanetsListener) :
     ListAdapter<Planet, PlanetsListAdapter.PlanetsViewHolder>(DiffCallback){

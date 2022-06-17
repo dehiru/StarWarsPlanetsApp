@@ -18,7 +18,7 @@ private val retrofit = Retrofit.Builder()
 
 interface PlanetsApiService {
     @GET("planets")
-    suspend fun getPlanets(): PlanetsNetworkData
+    suspend fun getPlanets(): FirstLevelNetworkData
 }
 
 object PlanetsAPI {

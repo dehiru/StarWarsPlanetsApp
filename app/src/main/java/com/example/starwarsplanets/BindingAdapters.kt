@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.starwarsplanets.network.Planet
+import com.example.starwarsplanets.domain.Planet
 import com.example.starwarsplanets.ui.PlanetsApiStatus
 import com.example.starwarsplanets.ui.PlanetsListAdapter
 

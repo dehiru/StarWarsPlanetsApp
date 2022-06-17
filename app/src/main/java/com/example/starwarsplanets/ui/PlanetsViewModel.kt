@@ -1,36 +1,40 @@
 package com.example.starwarsplanets.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.starwarsplanets.network.Planet
-import com.example.starwarsplanets.network.PlanetsAPI
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.starwarsplanets.database.getDatabase
+import com.example.starwarsplanets.domain.Planet
+import com.example.starwarsplanets.repository.PlanetsRepository
 import kotlinx.coroutines.launch
 
 enum class PlanetsApiStatus {LOADING, ERROR, DONE}
 
-class PlanetsViewModel : ViewModel() {
+class PlanetsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _status = MutableLiveData<PlanetsApiStatus>()
-    val status: LiveData<PlanetsApiStatus> =_status
+    private val planetsRepository = PlanetsRepository(getDatabase(application))
 
-    private val _planets = MutableLiveData<List<Planet>>()
-    val planets: LiveData<List<Planet>> = _planets
+    val planets = planetsRepository.planets
 
     private val _planet = MutableLiveData<Planet>()
     val planet: LiveData<Planet> = _planet
 
-    fun getPlanetsList() {
+    private val _status = MutableLiveData<PlanetsApiStatus>()
+    val status: LiveData<PlanetsApiStatus> =_status
+
+    init {
+        refreshDataFromRepository()
+    }
+
+    private fun refreshDataFromRepository() {
         viewModelScope.launch {
             _status.value = PlanetsApiStatus.LOADING
             try {
-                val planetsNetworkData = PlanetsAPI.retrofitService.getPlanets()
-                _planets.value = planetsNetworkData.results
+                planetsRepository.refreshPlanets()
                 _status.value = PlanetsApiStatus.DONE
             } catch (e: Exception) {
-                _planets.value = listOf()
-                _status.value = PlanetsApiStatus.ERROR
+                if (planets.value.isNullOrEmpty()) {
+                    _status.value = PlanetsApiStatus.ERROR
+                }
             }
         }
     }
@@ -38,4 +42,15 @@ class PlanetsViewModel : ViewModel() {
     fun onPlanetClicked(planet: Planet) {
         _planet.value = planet
     }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T: ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(PlanetsViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return PlanetsViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
+
 }
