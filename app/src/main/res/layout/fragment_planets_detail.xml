@@ -61,11 +61,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@{@string/diameter(viewModel.planet.diameter)}"
+            android:text="@{@string/diameter(viewModel.planet.getFormattedNumberString(viewModel.planet.diameter))}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/orbital_period"
-            tools:text="Diameter: 12240 km"/>
+            tools:text="Diameter: 12,240 km"/>
 
         <TextView
             android:id="@+id/climate"
@@ -116,11 +116,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@{@string/population(viewModel.planet.getFormattedPopulation())}"
+            android:text="@{@string/population(viewModel.planet.getFormattedNumberString(viewModel.planet.population))}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/surface_water"
-            tools:text="Population: 1000000000000"/>
+            tools:text="Population: 1,000,000,000,000"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

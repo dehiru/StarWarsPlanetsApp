@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/planetsListFragment"
         android:name="com.example.starwarsplanets.ui.PlanetsListFragment"
-        android:label="fragment_planets_list"
+        android:label="@string/star_wars_planets"
         tools:layout="@layout/fragment_planets_list" >
         <action
             android:id="@+id/action_planetsListFragment_to_planetsDetailFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/planetsDetailFragment"
         android:name="com.example.starwarsplanets.ui.PlanetsDetailFragment"
-        android:label="fragment_planets_detail"
+        android:label="@string/planet_information"
         tools:layout="@layout/fragment_planets_detail" />
 </navigation>

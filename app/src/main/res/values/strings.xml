@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">StarWarsPlanets</string>
+    <string name="star_wars_planets">Star Wars planets</string>
+    <string name="planet_information">Planet information</string>
     <string name="rotation_period">Rotation period: %s hours</string>
     <string name="orbital_period">Orbital period: %s days</string>
     <string name="diameter">Diameter: %s km</string>

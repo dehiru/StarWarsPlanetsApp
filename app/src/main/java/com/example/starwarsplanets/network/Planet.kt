@@ -19,11 +19,11 @@ data class Planet(
     val edited: String,
     val url: String
 ) {
-    fun getFormattedPopulation(): String {
+    fun getFormattedNumberString(numString: String): String {
         return try {
-            NumberFormat.getInstance().format(population.toLong())
+            NumberFormat.getInstance().format(numString.toLong())
         } catch (e: Exception) {
-            population
+            numString
         }
     }
 }
